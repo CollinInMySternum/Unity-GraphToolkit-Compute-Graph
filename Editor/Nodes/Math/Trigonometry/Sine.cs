@@ -35,7 +35,7 @@ namespace Editor.Nodes.Math.Trigonometry
         {
             string valX = EvaluateInput(compiler, "In");
 
-            compiler.Body.AppendLine($"    float {outputVar} = sin({valX} * 180.0f / PI);");
+            compiler.Body.AppendLine($"    float {outputVar} = sin({valX});");
         }
     }
     
@@ -71,7 +71,7 @@ namespace Editor.Nodes.Math.Trigonometry
         {
             string valX = EvaluateInput(compiler, "In");
 
-            compiler.Body.AppendLine($"    float {outputVar} = asin({valX} * 180.0f / PI);");
+            compiler.Body.AppendLine($"    float {outputVar} = asin({valX});");
         }
     }
 }
