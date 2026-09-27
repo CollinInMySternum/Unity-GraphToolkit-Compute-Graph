@@ -169,12 +169,12 @@ MonoBehaviour:
         m_InputConstantsById:
           m_KeyList:
           - Index
-          - RWBuffer
           - Value
+          - RWBuffer
           m_ValueList:
           - rid: 233707230134272643
-          - rid: 233707275728454035
-          - rid: 233707275728454036
+          - rid: 233707326315429888
+          - rid: 233707326315429889
         m_InputPortInfos:
           expandedPortsById:
             m_KeyList: []
@@ -263,11 +263,11 @@ MonoBehaviour:
         m_State: 0
         m_InputConstantsById:
           m_KeyList:
-          - A
           - B
+          - A
           m_ValueList:
-          - rid: 233707275728454039
-          - rid: 233707275728454040
+          - rid: 233707326315429890
+          - rid: 233707326315429891
         m_InputPortInfos:
           expandedPortsById:
             m_KeyList: []
@@ -380,13 +380,6 @@ MonoBehaviour:
           m_PortDirection: 1
           m_PortOrientation: 0
           m_Title: RWBuffer
-    - rid: 233707275728454035
-      type: {class: 'Constant`1[[Editor.ComputeGraphTypes/RWBufferFloat, ComputeGraph.Editor]]', ns: Unity.GraphToolkit.Editor, asm: UnityEditor.GraphToolkitModule}
-      data: {}
-    - rid: 233707275728454036
-      type: {class: 'Constant`1[[System.Single, mscorlib]]', ns: Unity.GraphToolkit.Editor, asm: UnityEditor.GraphToolkitModule}
-      data:
-        m_Value: 0
     - rid: 233707275728454037
       type: {class: WireModel, ns: Unity.GraphToolkit.Editor, asm: UnityEditor.GraphToolkitModule}
       data:
@@ -451,14 +444,6 @@ MonoBehaviour:
           m_PortDirection: 1
           m_PortOrientation: 0
           m_Title: A
-    - rid: 233707275728454039
-      type: {class: 'Constant`1[[System.Single, mscorlib]]', ns: Unity.GraphToolkit.Editor, asm: UnityEditor.GraphToolkitModule}
-      data:
-        m_Value: 0
-    - rid: 233707275728454040
-      type: {class: 'Constant`1[[System.Single, mscorlib]]', ns: Unity.GraphToolkit.Editor, asm: UnityEditor.GraphToolkitModule}
-      data:
-        m_Value: 0
     - rid: 233707275728454041
       type: {class: WireModel, ns: Unity.GraphToolkit.Editor, asm: UnityEditor.GraphToolkitModule}
       data:
@@ -491,3 +476,18 @@ MonoBehaviour:
           m_PortDirection: 1
           m_PortOrientation: 0
           m_Title: Value
+    - rid: 233707326315429888
+      type: {class: 'Constant`1[[System.Single, mscorlib]]', ns: Unity.GraphToolkit.Editor, asm: UnityEditor.GraphToolkitModule}
+      data:
+        m_Value: 0
+    - rid: 233707326315429889
+      type: {class: 'Constant`1[[Editor.ComputeGraphTypes/RWBufferFloat, ComputeGraph.Editor]]', ns: Unity.GraphToolkit.Editor, asm: UnityEditor.GraphToolkitModule}
+      data: {}
+    - rid: 233707326315429890
+      type: {class: 'Constant`1[[System.Single, mscorlib]]', ns: Unity.GraphToolkit.Editor, asm: UnityEditor.GraphToolkitModule}
+      data:
+        m_Value: 2
+    - rid: 233707326315429891
+      type: {class: 'Constant`1[[System.Single, mscorlib]]', ns: Unity.GraphToolkit.Editor, asm: UnityEditor.GraphToolkitModule}
+      data:
+        m_Value: 0
