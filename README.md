@@ -1,4 +1,4 @@
-# Unity Compute Graph Experiments
+# Unity Graph Toolkit Framework Compute Graph
 
 A work-in-progress visual graph editor for curating Compute Shaders in Unity using the Graph Toolkit framework.
 
