@@ -55,9 +55,9 @@ MonoBehaviour:
         - rid: 233707326315429929
         - rid: 233707326315429932
         - rid: 233707326315429933
-        - rid: 233707326315429937
         - rid: 233707326315429938
         - rid: 233707326315429944
+        - rid: 233707326315430087
         m_GraphStickyNoteModels: []
         m_GraphPlacematModels:
         - rid: 233707326315429952
@@ -260,21 +260,13 @@ MonoBehaviour:
           m_Category: 0
           m_Index: 9
         - m_Guid:
-            m_Value0: 2941056080762527914
-            m_Value1: 7383727912932706889
-          m_HashGuid:
-            serializedVersion: 2
-            Hash: aa605a4eecbad028498a7d886a457866
-          m_Category: 2
-          m_Index: 11
-        - m_Guid:
             m_Value0: 3616246894974945030
             m_Value1: 12655705741461562364
           m_HashGuid:
             serializedVersion: 2
             Hash: 0647172b647d2f32fc23b0ad5119a2af
           m_Category: 2
-          m_Index: 12
+          m_Index: 11
         - m_Guid:
             m_Value0: 11104164485493889800
             m_Value1: 6157078944211934617
@@ -289,6 +281,14 @@ MonoBehaviour:
           m_HashGuid:
             serializedVersion: 2
             Hash: d47e6ad727913dcda3329202da91d7e5
+          m_Category: 2
+          m_Index: 12
+        - m_Guid:
+            m_Value0: 4395065653995814566
+            m_Value1: 2553052955299802683
+          m_HashGuid:
+            serializedVersion: 2
+            Hash: a6bef01eed68fe3c3bee67dd22446e23
           m_Category: 2
           m_Index: 13
         m_EntryPoint:
@@ -333,12 +333,12 @@ MonoBehaviour:
         m_InputConstantsById:
           m_KeyList:
           - Index
-          - RWBuffer
           - Value
+          - RWBuffer
           m_ValueList:
           - rid: 233707230134272643
-          - rid: 233707326315429947
-          - rid: 233707326315429948
+          - rid: 233707326315430078
+          - rid: 233707326315430079
         m_InputPortInfos:
           expandedPortsById:
             m_KeyList: []
@@ -427,11 +427,11 @@ MonoBehaviour:
         m_State: 0
         m_InputConstantsById:
           m_KeyList:
-          - B
           - A
+          - B
           m_ValueList:
-          - rid: 233707326315429949
-          - rid: 233707326315429950
+          - rid: 233707326315430080
+          - rid: 233707326315430081
         m_InputPortInfos:
           expandedPortsById:
             m_KeyList: []
@@ -1156,38 +1156,6 @@ MonoBehaviour:
     - rid: 233707326315429936
       type: {class: SineRadians, ns: Editor.Nodes.Math.Trigonometry, asm: ComputeGraph.Editor}
       data: 
-    - rid: 233707326315429937
-      type: {class: WireModel, ns: Unity.GraphToolkit.Editor, asm: UnityEditor.GraphToolkitModule}
-      data:
-        m_Guid:
-          m_Value0: 2941056080762527914
-          m_Value1: 7383727912932706889
-        m_HashGuid:
-          serializedVersion: 2
-          Hash: aa605a4eecbad028498a7d886a457866
-        m_Version: 2
-        m_FromPortReference:
-          m_NodeModelGuid:
-            m_Value0: 15812093756394153039
-            m_Value1: 13382450805772240484
-          m_NodeModelHashGuid:
-            serializedVersion: 2
-            Hash: 4fa40bd17ed76fdb64c631c61a04b8b9
-          m_UniqueId: Out
-          m_PortDirection: 2
-          m_PortOrientation: 0
-          m_Title: Out
-        m_ToPortReference:
-          m_NodeModelGuid:
-            m_Value0: 2503783329763442579
-            m_Value1: 15003079497631475864
-          m_NodeModelHashGuid:
-            serializedVersion: 2
-            Hash: 933f183dac39bf229828453950a535d0
-          m_UniqueId: In
-          m_PortDirection: 1
-          m_PortOrientation: 0
-          m_Title: In
     - rid: 233707326315429938
       type: {class: WireModel, ns: Unity.GraphToolkit.Editor, asm: UnityEditor.GraphToolkitModule}
       data:
@@ -1298,25 +1266,6 @@ MonoBehaviour:
     - rid: 233707326315429946
       type: {class: BreakInt3, ns: Editor.Nodes.Vector, asm: ComputeGraph.Editor}
       data: 
-    - rid: 233707326315429947
-      type: {class: 'Constant`1[[Editor.ComputeGraphTypes/RWBufferFloat4, ComputeGraph.Editor]]', ns: Unity.GraphToolkit.Editor, asm: UnityEditor.GraphToolkitModule}
-      data: {}
-    - rid: 233707326315429948
-      type: {class: 'Constant`1[[Unity.Mathematics.float4, UnityEngine.MathematicsModule]]', ns: Unity.GraphToolkit.Editor, asm: UnityEditor.GraphToolkitModule}
-      data:
-        m_Value:
-          x: 0
-          y: 0
-          z: 0
-          w: 0
-    - rid: 233707326315429949
-      type: {class: 'Constant`1[[System.Single, mscorlib]]', ns: Unity.GraphToolkit.Editor, asm: UnityEditor.GraphToolkitModule}
-      data:
-        m_Value: 0
-    - rid: 233707326315429950
-      type: {class: 'Constant`1[[System.Single, mscorlib]]', ns: Unity.GraphToolkit.Editor, asm: UnityEditor.GraphToolkitModule}
-      data:
-        m_Value: 0
     - rid: 233707326315429952
       type: {class: PlacematModel, ns: Unity.GraphToolkit.Editor, asm: UnityEditor.GraphToolkitModule}
       data:
@@ -1340,3 +1289,54 @@ MonoBehaviour:
         m_ElementColor:
           m_Color: {r: 0.20784314, g: 0.22745098, b: 0.2784314, a: 1}
           m_HasUserColor: 0
+    - rid: 233707326315430078
+      type: {class: 'Constant`1[[Unity.Mathematics.float4, UnityEngine.MathematicsModule]]', ns: Unity.GraphToolkit.Editor, asm: UnityEditor.GraphToolkitModule}
+      data:
+        m_Value:
+          x: 0
+          y: 0
+          z: 0
+          w: 0
+    - rid: 233707326315430079
+      type: {class: 'Constant`1[[Editor.ComputeGraphTypes/RWBufferFloat4, ComputeGraph.Editor]]', ns: Unity.GraphToolkit.Editor, asm: UnityEditor.GraphToolkitModule}
+      data: {}
+    - rid: 233707326315430080
+      type: {class: 'Constant`1[[System.Single, mscorlib]]', ns: Unity.GraphToolkit.Editor, asm: UnityEditor.GraphToolkitModule}
+      data:
+        m_Value: 0
+    - rid: 233707326315430081
+      type: {class: 'Constant`1[[System.Single, mscorlib]]', ns: Unity.GraphToolkit.Editor, asm: UnityEditor.GraphToolkitModule}
+      data:
+        m_Value: 0
+    - rid: 233707326315430087
+      type: {class: WireModel, ns: Unity.GraphToolkit.Editor, asm: UnityEditor.GraphToolkitModule}
+      data:
+        m_Guid:
+          m_Value0: 4395065653995814566
+          m_Value1: 2553052955299802683
+        m_HashGuid:
+          serializedVersion: 2
+          Hash: a6bef01eed68fe3c3bee67dd22446e23
+        m_Version: 2
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 15812093756394153039
+            m_Value1: 13382450805772240484
+          m_NodeModelHashGuid:
+            serializedVersion: 2
+            Hash: 4fa40bd17ed76fdb64c631c61a04b8b9
+          m_UniqueId: Out
+          m_PortDirection: 2
+          m_PortOrientation: 0
+          m_Title: Out
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 2503783329763442579
+            m_Value1: 15003079497631475864
+          m_NodeModelHashGuid:
+            serializedVersion: 2
+            Hash: 933f183dac39bf229828453950a535d0
+          m_UniqueId: In
+          m_PortDirection: 1
+          m_PortOrientation: 0
+          m_Title: In
