@@ -59,8 +59,13 @@ namespace Editor
         public static bool IsBuffer(Type t) => Resources.TryGetValue(t, out var meta) && meta.IsBuffer;
         public static bool IsTexture(Type t) => Resources.TryGetValue(t, out var meta) && meta.IsTexture;
         public static bool IsReadWrite(Type t) => Resources.TryGetValue(t, out var meta) && meta.IsReadWrite;
-        public static Type GetPayloadType(Type t) => Resources.TryGetValue(t, out var meta) ? meta.PayloadType : t;
-        
+
+        public static Type GetPayloadType(Type t)
+        {
+            if (t == null) return typeof(Untyped);
+            return Resources.TryGetValue(t, out var meta) ? meta.PayloadType : t;
+        }
+
         // Name sanitization
         private static readonly Regex SafeNameRegex = new Regex(@"[^a-zA-Z0-9_]", RegexOptions.Compiled);
 
