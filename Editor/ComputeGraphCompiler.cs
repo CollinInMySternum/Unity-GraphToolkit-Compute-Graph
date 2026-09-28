@@ -25,7 +25,12 @@ namespace Editor
                    $"{Declarations}\n\n" +
                    $"{Functions}\n\n" +
                    $"[numthreads(8,8,1)]\n" +
-                   $"void CSMain(uint3 id : SV_DispatchThreadID)\n" +
+                   $"void CSMain(\n" +
+                   $"    uint3 dispatchThreadID : SV_DispatchThreadID,\n" +
+                   $"    uint3 groupThreadID : SV_GroupThreadID,\n" +
+                   $"    uint3 groupID : SV_GroupID,\n" +
+                   $"    uint groupIndex : SV_GroupIndex\n" +
+                   $")\n" +
                    $"{{\n" +
                    $"{Body}\n" +
                    $"}}";

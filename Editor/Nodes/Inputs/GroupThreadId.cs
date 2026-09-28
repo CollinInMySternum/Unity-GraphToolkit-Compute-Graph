@@ -5,8 +5,8 @@ using Unity.Mathematics;
 namespace Editor.Nodes.Inputs
 {
     [Serializable]
-    [Node("Inputs", "", "Dispatch Thread ID", StylePath)]
-    public class DispatchThreadId : ComputeNodeBase
+    [Node("Inputs", "", "Group Thread ID", StylePath)]
+    public class GroupThreadId : ComputeNodeBase
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)
         {
@@ -26,10 +26,10 @@ namespace Editor.Nodes.Inputs
         {
             switch (outPortName)
             {
-                case "XYZ": return "dispatchThreadID";
-                case "X": return "dispatchThreadID.x";
-                case "Y": return "dispatchThreadID.y";
-                case "Z": return "dispatchThreadID.z";
+                case "XYZ": return "groupThreadID";
+                case "X": return "groupThreadID.x";
+                case "Y": return "groupThreadID.y";
+                case "Z": return "groupThreadID.z";
                 
                 default: return "0";
             }
