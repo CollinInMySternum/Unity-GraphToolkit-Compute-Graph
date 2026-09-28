@@ -21,6 +21,9 @@ namespace Editor
         [Serializable] public struct RWBufferFloat3 {}
         [Serializable] public struct RWBufferFloat4 {}
         [Serializable] public struct RWBufferInt {}
+        [Serializable] public struct RWTexture2D {}
+        [Serializable] public struct RWTexture3D {}
+
     
         public class ResourceMeta
         {
@@ -35,8 +38,9 @@ namespace Editor
         {
             // Textures
             { typeof(Texture2D), new ResourceMeta { IsTexture = true, IsReadWrite = false, PayloadType = typeof(float4), DeclarationTemplate = "Texture2D<{0}> {1};\nSamplerState sampler_{1};" } },
-            { typeof(RenderTexture), new ResourceMeta { IsTexture = true, IsReadWrite = true, PayloadType = typeof(float4), DeclarationTemplate = "RWTexture2D<{0}> {1};" } },
+            { typeof(RWTexture2D), new ResourceMeta { IsTexture = true, IsReadWrite = true, PayloadType = typeof(float4), DeclarationTemplate = "RWTexture2D<{0}> {1};" } },
             { typeof(Texture3D), new ResourceMeta { IsTexture = true, IsReadWrite = false, PayloadType = typeof(float4), DeclarationTemplate = "Texture3D<{0}> {1};\nSamplerState sampler_{1};" } },
+            { typeof(RWTexture3D), new ResourceMeta { IsTexture = true, IsReadWrite = true, PayloadType = typeof(float4), DeclarationTemplate = "RWTexture3D<{0}> {1};" } },
             
             // Readonly Buffers
             { typeof(BufferFloat), new ResourceMeta { IsBuffer = true, IsReadWrite = false, PayloadType = typeof(float), DeclarationTemplate = "StructuredBuffer<{0}> {1};" } },

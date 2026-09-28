@@ -106,4 +106,9 @@ namespace Editor.Nodes
             return fallbackValue;
         }
     }
+
+    // Dummy interface to signify nodes as a final output
+    public interface IComputeNodeOutput
+    {
+    }
 }

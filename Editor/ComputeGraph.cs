@@ -44,11 +44,11 @@ namespace Editor
         {
             var compiler = new ComputeGraphCompiler();
 
-            var writeNode = GetNodes().OfType<WriteBuffer>().FirstOrDefault();
+            var outputNodes = GetNodes().OfType<IComputeNodeOutput>().Cast<ComputeNodeBase>().ToList();
 
-            if (writeNode == null)
+            if (outputNodes.Count == 0)
             {
-                Debug.LogError("Compilation Failed: No Output Node found on graph.");
+                Debug.LogError("Compilation Failed: No Output Nodes found on graph.");
                 return;
             }
 
@@ -57,7 +57,11 @@ namespace Editor
                 node.ResetCompilationState();
             }
 
-            writeNode.GetOrEmitHLSL(compiler, "Result");
+            foreach (var outputNode in outputNodes)
+            {
+                outputNode.GetOrEmitHLSL(compiler, "Result");
+            }
+
             string finalCode = compiler.GetCompiledShader();
             
             CreateComputeAsset(finalCode);

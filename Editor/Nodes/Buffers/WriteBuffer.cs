@@ -6,7 +6,7 @@ namespace Editor.Nodes.Buffers
 {
     [Serializable]
     [Node("Buffers", "", "Write Buffer", StylePath)]
-    public class WriteBuffer : ComputeNodeWildcardBase
+    public class WriteBuffer : ComputeNodeWildcardBase, IComputeNodeOutput
     {
         public override string[] wildcardPorts => new[] { "RWBuffer" };
 
