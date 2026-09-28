@@ -11,14 +11,14 @@ using UnityEngine;
 
 namespace Editor
 {
-    [Graph(AssetExtension, options: GraphOptions.DisableAutoInclusionOfNodesFromGraphAssembly)]
+    [Graph(AssetExtension, options: GraphOptions.Default)]
     [Serializable]
     public class ComputeGraph : Graph
     {
         [SerializeField] private string guid = Guid.NewGuid().ToString();
         [SerializeField] private ComputeShader computeShader;
         
-        public const string AssetExtension = "cg";
+        public const string AssetExtension = "cgraph";
 
         [MenuItem("Assets/Create/Compute Graph", false)]
         static void CreateAssetFile()
