@@ -24,6 +24,8 @@ namespace Editor
         public static Color Vector3Color = new Color(1.000f, 0.907f, 0.027f); // #80FFE6
         public static Color Vector4Color = new Color(0.905f, 0.552f, 0.862f); // #80FFE6
         
+        public static Color TextureColor = new Color(0.992f, 0.525f, 0.470f); // #FD8678
+        
         protected List<DataTypeStyleDefinition> TypeDefinitions = new List<DataTypeStyleDefinition>()
         {
             new DataTypeStyleDefinition { Type = typeof(int2), IconPath = "Vector2@4x", Color = SingleColor },
@@ -39,6 +41,9 @@ namespace Editor
             new DataTypeStyleDefinition { Type = typeof(ComputeGraphTypes.BufferFloat2), IconPath = "Advanced@4x", Color = Vector2Color },
             new DataTypeStyleDefinition { Type = typeof(ComputeGraphTypes.BufferFloat3), IconPath = "Advanced@4x", Color = Vector3Color },
             new DataTypeStyleDefinition { Type = typeof(ComputeGraphTypes.BufferFloat4), IconPath = "Advanced@4x", Color = Vector4Color },
+            
+            new DataTypeStyleDefinition { Type = typeof(ComputeGraphTypes.RWTexture2D), IconPath = "Texture2D@4x", Color = TextureColor },
+            new DataTypeStyleDefinition { Type = typeof(ComputeGraphTypes.RWTexture3D), IconPath = "Texture3D@4x", Color = TextureColor },
         };
         
         public ComputeGraphDataTypeStyleMapper()
