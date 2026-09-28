@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Editor.Nodes.Textures
 {
     [Serializable]
-    [Node("Textures/Texture Write", "", "Texture Write", StylePath)]
+    [Node("Textures", "", "Texture Write", StylePath)]
     public class TextureWriteNode : ComputeNodeWildcardBase, IComputeNodeOutput
     {
         public override string[] wildcardPorts => new[] { "RWTexture" };

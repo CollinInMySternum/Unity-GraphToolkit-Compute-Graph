@@ -135,7 +135,7 @@ MonoBehaviour:
           serializedVersion: 2
           Hash: 394e837a27895b530a7fea36cbaa60cb
         m_Version: 2
-        m_Position: {x: 365.4499, y: 285.36673}
+        m_Position: {x: 363.1629, y: 269.9294}
         m_Title: New Variable
         m_Tooltip: 
         m_NodePreviewModel:
@@ -184,12 +184,12 @@ MonoBehaviour:
         m_InputConstantsById:
           m_KeyList:
           - Index
-          - RWBuffer
           - Value
+          - RWBuffer
           m_ValueList:
           - rid: 233707329049592468
-          - rid: 233707329049592471
-          - rid: 233707329049592472
+          - rid: 233707331869737040
+          - rid: 233707331869737041
         m_InputPortInfos:
           expandedPortsById:
             m_KeyList: []
@@ -244,10 +244,7 @@ MonoBehaviour:
           m_PortDirection: 1
           m_PortOrientation: 0
           m_Title: RWBuffer
-    - rid: 233707329049592471
-      type: {class: 'Constant`1[[Editor.ComputeGraphTypes/RWBufferFloat4, ComputeGraph.Editor]]', ns: Unity.GraphToolkit.Editor, asm: UnityEditor.GraphToolkitModule}
-      data: {}
-    - rid: 233707329049592472
+    - rid: 233707331869737040
       type: {class: 'Constant`1[[Unity.Mathematics.float4, UnityEngine.MathematicsModule]]', ns: Unity.GraphToolkit.Editor, asm: UnityEditor.GraphToolkitModule}
       data:
         m_Value:
@@ -255,3 +252,6 @@ MonoBehaviour:
           y: 0
           z: 0
           w: 0
+    - rid: 233707331869737041
+      type: {class: 'Constant`1[[Editor.ComputeGraphTypes/RWBufferFloat4, ComputeGraph.Editor]]', ns: Unity.GraphToolkit.Editor, asm: UnityEditor.GraphToolkitModule}
+      data: {}

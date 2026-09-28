@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Editor.Nodes.Textures
 {
     [Serializable]
-    [Node("Textures/Texture Read", "", "Texture Read", StylePath)]
+    [Node("Textures", "", "Texture Read", StylePath)]
     public class TextureReadNode : ComputeNodeWildcardBase
     {
         public override string[] wildcardPorts => new[] { "Texture" };
