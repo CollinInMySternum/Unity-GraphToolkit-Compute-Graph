@@ -6,8 +6,8 @@ using UnityEngine;
 namespace Editor.Nodes.Buffers
 {
     [Serializable]
-    [Node("Buffers", "", "Read Buffer", StylePath)]
-    public class ReadBuffer : ComputeNodeWildcardBase
+    [Node("Buffers", "", "Buffer Read", StylePath)]
+    public class BufferRead : ComputeNodeWildcardBase
     {
         public override bool IsValidWildcardType(Type type) => ComputeGraphTypes.IsBuffer(type);
 

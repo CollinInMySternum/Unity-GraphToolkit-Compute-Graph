@@ -6,8 +6,8 @@ using UnityEngine;
 namespace Editor.Nodes.Buffers
 {
     [Serializable]
-    [Node("Buffers", "", "Write Buffer", StylePath)]
-    public class WriteBuffer : ComputeNodeWildcardBase, IComputeNodeOutput
+    [Node("Buffers", "", "Buffer Write", StylePath)]
+    public class BufferWrite : ComputeNodeWildcardBase, IComputeNodeOutput
     {
         public override bool IsValidWildcardType(Type type)
         {
