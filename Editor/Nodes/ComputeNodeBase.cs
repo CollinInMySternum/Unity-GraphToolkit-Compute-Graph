@@ -9,7 +9,6 @@ namespace Editor.Nodes
 {
     [Serializable]
     [Node("", "", "", StylePath)]
-    [UseWithGraph(typeof(ComputeGraph))]
     public abstract class ComputeNodeBase : Node
     {
         public const string StylePath = "Packages/com.sternum.computegraph/Editor/Styles/ComputeNodeStylesMaster.uss";

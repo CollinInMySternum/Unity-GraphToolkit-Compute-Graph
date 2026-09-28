@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Editor
 {
-    [Graph(AssetExtension, options: GraphOptions.Default)]
+    [Graph(AssetExtension)]
     [Serializable]
     public class ComputeGraph : Graph
     {
