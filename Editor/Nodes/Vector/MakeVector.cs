@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Unity.GraphToolkit.Editor;
 using Unity.Mathematics;
 using UnityEngine;
@@ -9,13 +10,13 @@ namespace Editor.Nodes.Vector
     [Node("Math/Float2", "", "Make Float2", StylePath)]
     public class MakeFloat2 : ComputeNodeBase
     {
-        protected override void OnDefinePorts(IPortDefinitionContext context)
+        protected override IEnumerable<PortDefinition> DefinedPorts => new[]
         {
-            context.AddInputPort<float>("X").Build();
-            context.AddInputPort<float>("Y").Build();
+            PortDefinition.Input("X", type: typeof(float)),
+            PortDefinition.Input("Y", type: typeof(float)),
             
-            context.AddOutputPort<float2>("Out").Build();
-        }
+            PortDefinition.Output("Out", type: typeof(float2)),
+        };
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
@@ -30,14 +31,14 @@ namespace Editor.Nodes.Vector
     [Node("Math/Float3", "", "Make Float3", StylePath)]
     public class MakeFloat3 : ComputeNodeBase
     {
-        protected override void OnDefinePorts(IPortDefinitionContext context)
+        protected override IEnumerable<PortDefinition> DefinedPorts => new[]
         {
-            context.AddInputPort<float>("X").Build();
-            context.AddInputPort<float>("Y").Build();
-            context.AddInputPort<float>("Z").Build();
+            PortDefinition.Input("X", type: typeof(float)),
+            PortDefinition.Input("Y", type: typeof(float)),
+            PortDefinition.Input("Z", type: typeof(float)),
             
-            context.AddOutputPort<float3>("Out").Build();
-        }
+            PortDefinition.Output("Out", type: typeof(float3)),
+        };
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
@@ -53,15 +54,15 @@ namespace Editor.Nodes.Vector
     [Node("Math/Float4", "", "Make Float4", StylePath)]
     public class MakeFloat4 : ComputeNodeBase
     {
-        protected override void OnDefinePorts(IPortDefinitionContext context)
+        protected override IEnumerable<PortDefinition> DefinedPorts => new[]
         {
-            context.AddInputPort<float>("X").Build();
-            context.AddInputPort<float>("Y").Build();
-            context.AddInputPort<float>("Z").Build();
-            context.AddInputPort<float>("W").Build();
+            PortDefinition.Input("X", type: typeof(float)),
+            PortDefinition.Input("Y", type: typeof(float)),
+            PortDefinition.Input("Z", type: typeof(float)),
+            PortDefinition.Input("W", type: typeof(float)),
             
-            context.AddOutputPort<float4>("Out").Build();
-        }
+            PortDefinition.Output("Out", type: typeof(float4)),
+        };
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
@@ -78,13 +79,13 @@ namespace Editor.Nodes.Vector
     [Node("Math/Int2", "", "Make Int2", StylePath)]
     public class MakeInt2 : ComputeNodeBase
     {
-        protected override void OnDefinePorts(IPortDefinitionContext context)
+        protected override IEnumerable<PortDefinition> DefinedPorts => new[]
         {
-            context.AddInputPort<int>("X").Build();
-            context.AddInputPort<int>("Y").Build();
+            PortDefinition.Input("X", type: typeof(int)),
+            PortDefinition.Input("Y", type: typeof(int)),
             
-            context.AddOutputPort<int2>("Out").Build();
-        }
+            PortDefinition.Output("Out", type: typeof(int2)),
+        };
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
@@ -99,14 +100,14 @@ namespace Editor.Nodes.Vector
     [Node("Math/Int3", "", "Make Int3", StylePath)]
     public class MakeInt3 : ComputeNodeBase
     {
-        protected override void OnDefinePorts(IPortDefinitionContext context)
+        protected override IEnumerable<PortDefinition> DefinedPorts => new[]
         {
-            context.AddInputPort<int>("X").Build();
-            context.AddInputPort<int>("Y").Build();
-            context.AddInputPort<int>("Z").Build();
+            PortDefinition.Input("X", type: typeof(int)),
+            PortDefinition.Input("Y", type: typeof(int)),
+            PortDefinition.Input("Z", type: typeof(int)),
             
-            context.AddOutputPort<int3>("Out").Build();
-        }
+            PortDefinition.Output("Out", type: typeof(int3)),
+        };
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
@@ -122,15 +123,15 @@ namespace Editor.Nodes.Vector
     [Node("Math/Int4", "", "Make Int4", StylePath)]
     public class MakeInt4 : ComputeNodeBase
     {
-        protected override void OnDefinePorts(IPortDefinitionContext context)
+        protected override IEnumerable<PortDefinition> DefinedPorts => new[]
         {
-            context.AddInputPort<int>("X").Build();
-            context.AddInputPort<int>("Y").Build();
-            context.AddInputPort<int>("Z").Build();
-            context.AddInputPort<int>("W").Build();
+            PortDefinition.Input("X", type: typeof(int)),
+            PortDefinition.Input("Y", type: typeof(int)),
+            PortDefinition.Input("Z", type: typeof(int)),
+            PortDefinition.Input("W", type: typeof(int)),
             
-            context.AddOutputPort<int4>("Out").Build();
-        }
+            PortDefinition.Output("Out", type: typeof(int4)),
+        };
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {

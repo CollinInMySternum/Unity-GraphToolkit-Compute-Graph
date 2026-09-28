@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Unity.GraphToolkit.Editor;
 
 namespace Editor.Nodes.Control
@@ -7,23 +8,14 @@ namespace Editor.Nodes.Control
     [Node("Control", "", "Smoothstep")]
     public class SmoothstepNode : ComputeNodeWildcardBase
     {
-        public override string[] wildcardPorts => new[] { "A", "B" };
-
-        public override bool IsValidWildcardType(Type type)
+        protected override IEnumerable<PortDefinition> DefinedPorts => new[]
         {
-            // Only support data types
-            return !ComputeGraphTypes.IsBuffer(type) && !ComputeGraphTypes.IsTexture(type);
-        }
-
-        protected override void OnDefinePorts(IPortDefinitionContext context)
-        {
-            context.AddInputPort("A").WithDataType(resolvedType).Build();
-            context.AddInputPort("B").WithDataType(resolvedType).Build();
-
-            context.AddInputPort<float>("X").Build();
-
-            context.AddOutputPort("Out").WithDataType(resolvedType).Build();
-        }
+            PortDefinition.Input("A", isWildcard: true),
+            PortDefinition.Input("B", isWildcard: true),
+            PortDefinition.Input("X", typeof(float)),
+            
+            PortDefinition.Output("Out", isWildcard: true)
+        };
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
@@ -31,7 +23,7 @@ namespace Editor.Nodes.Control
             string valB = EvaluateInput(compiler, "B");
             string valX = EvaluateInput(compiler, "X");
 
-            string hlslType = ComputeGraphTypes.GetStringFromCSType(resolvedType);
+            string hlslType = ComputeGraphTypes.GetStringFromCSType(ResolvedType);
             
             compiler.Body.AppendLine($"    {hlslType} {outputVar} = smoothstep({valA}, {valB}, {valX});");
         }

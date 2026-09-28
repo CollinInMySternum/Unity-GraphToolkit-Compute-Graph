@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Unity.GraphToolkit.Editor;
 
 namespace Editor.Nodes.Math.Operators
@@ -7,13 +8,13 @@ namespace Editor.Nodes.Math.Operators
     [Node("Math/Operators", "", "OR", StylePath)]
     public class BooleanOr : ComputeNodeBase
     {
-        protected override void OnDefinePorts(IPortDefinitionContext context)
+        protected override IEnumerable<PortDefinition> DefinedPorts => new[]
         {
-            context.AddInputPort<bool>("A").Build();
-            context.AddInputPort<bool>("B").Build();
-
-            context.AddOutputPort<bool>("Out").Build();
-        }
+            PortDefinition.Input("A", type: typeof(bool)),
+            PortDefinition.Input("B", type: typeof(bool)),
+            
+            PortDefinition.Output("Out", type: typeof(bool))
+        };
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
@@ -28,13 +29,14 @@ namespace Editor.Nodes.Math.Operators
     [Node("Math/Operators", "", "AND", StylePath)]
     public class BooleanAnd : ComputeNodeBase
     {
-        protected override void OnDefinePorts(IPortDefinitionContext context)
+        
+        protected override IEnumerable<PortDefinition> DefinedPorts => new[]
         {
-            context.AddInputPort<bool>("A").Build();
-            context.AddInputPort<bool>("B").Build();
+            PortDefinition.Input("A", type: typeof(bool)),
+            PortDefinition.Input("B", type: typeof(bool)),
             
-            context.AddOutputPort<bool>("Out").Build();
-        }
+            PortDefinition.Output("Out", type: typeof(bool))
+        };
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {

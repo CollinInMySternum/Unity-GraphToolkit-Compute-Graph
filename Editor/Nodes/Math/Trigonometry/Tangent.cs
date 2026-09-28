@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Unity.GraphToolkit.Editor;
 
 namespace Editor.Nodes.Math.Trigonometry
@@ -7,12 +8,12 @@ namespace Editor.Nodes.Math.Trigonometry
     [Node("Math/Trigonometry", "", "Tangent (Degrees)", StylePath)]
     public class TangentDegrees : ComputeNodeBase
     {
-        protected override void OnDefinePorts(IPortDefinitionContext context)
+        protected override IEnumerable<PortDefinition> DefinedPorts => new[]
         {
-            context.AddInputPort<float>("In").Build();
-            context.AddOutputPort<float>("Out").Build();
-        }
-
+            PortDefinition.Input("In", type: typeof(float)),
+            PortDefinition.Output("Out", type: typeof(float)),
+        };
+        
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
             string valX = EvaluateInput(compiler, "In");
@@ -25,11 +26,11 @@ namespace Editor.Nodes.Math.Trigonometry
     [Node("Math/Trigonometry", "", "Tangent (Radians)", StylePath)]
     public class TangentRadians : ComputeNodeBase
     {
-        protected override void OnDefinePorts(IPortDefinitionContext context)
+        protected override IEnumerable<PortDefinition> DefinedPorts => new[]
         {
-            context.AddInputPort<float>("In").Build();
-            context.AddOutputPort<float>("Out").Build();
-        }
+            PortDefinition.Input("In", type: typeof(float)),
+            PortDefinition.Output("Out", type: typeof(float)),
+        };
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
@@ -43,11 +44,11 @@ namespace Editor.Nodes.Math.Trigonometry
     [Node("Math/Trigonometry", "", "Arctangent (Degrees)", StylePath)]
     public class ArcTangentDegrees : ComputeNodeBase
     {
-        protected override void OnDefinePorts(IPortDefinitionContext context)
+        protected override IEnumerable<PortDefinition> DefinedPorts => new[]
         {
-            context.AddInputPort<float>("In").Build();
-            context.AddOutputPort<float>("Out").Build();
-        }
+            PortDefinition.Input("In", type: typeof(float)),
+            PortDefinition.Output("Out", type: typeof(float)),
+        };
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
@@ -61,11 +62,11 @@ namespace Editor.Nodes.Math.Trigonometry
     [Node("Math/Trigonometry", "", "Arctangent (Radians)", StylePath)]
     public class ArcTangentRadians : ComputeNodeBase
     {
-        protected override void OnDefinePorts(IPortDefinitionContext context)
+        protected override IEnumerable<PortDefinition> DefinedPorts => new[]
         {
-            context.AddInputPort<float>("In").Build();
-            context.AddOutputPort<float>("Out").Build();
-        }
+            PortDefinition.Input("In", type: typeof(float)),
+            PortDefinition.Output("Out", type: typeof(float)),
+        };
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {

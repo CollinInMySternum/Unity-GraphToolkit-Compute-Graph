@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Unity.GraphToolkit.Editor;
 
 namespace Editor.Nodes.Control
@@ -7,17 +8,15 @@ namespace Editor.Nodes.Control
     [Node("Control", "", "If")]
     public class IfNode : ComputeNodeWildcardBase
     {
-        public override string[] wildcardPorts => new[] { "True", "False" };
-    
-        protected override void OnDefinePorts(IPortDefinitionContext context)
+        protected override IEnumerable<PortDefinition> DefinedPorts => new[]
         {
-            context.AddInputPort("True").WithDataType(resolvedType).Build();
-            context.AddInputPort("False").WithDataType(resolvedType).Build();
+            PortDefinition.Input("True", isWildcard: true),
+            PortDefinition.Input("False", isWildcard: true),
 
-            context.AddInputPort<bool>("In").Build();
+            PortDefinition.Input("In", type: typeof(bool)),
 
-            context.AddOutputPort("Out").WithDataType(resolvedType).Build();
-        }
+            PortDefinition.Output("Out", isWildcard: true)
+        };
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
@@ -25,7 +24,7 @@ namespace Editor.Nodes.Control
             string valFalse = EvaluateInput(compiler, "False");
             string valIn = EvaluateInput(compiler, "In");
 
-            string hlslType = ComputeGraphTypes.GetStringFromCSType(resolvedType);
+            string hlslType = ComputeGraphTypes.GetStringFromCSType(ResolvedType);
             
             compiler.Body.AppendLine($"    {hlslType} {outputVar} = {valIn} ? {valTrue} : {valFalse};");
         }

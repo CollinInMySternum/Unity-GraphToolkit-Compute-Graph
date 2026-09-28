@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Unity.GraphToolkit.Editor;
 using UnityEngine;
 
@@ -8,34 +9,22 @@ namespace Editor.Nodes.Buffers
     [Node("Buffers", "", "Read Buffer", StylePath)]
     public class ReadBuffer : ComputeNodeWildcardBase
     {
-        public override string[] wildcardPorts => new[] { "Buffer" };
+        public override bool IsValidWildcardType(Type type) => ComputeGraphTypes.IsBuffer(type);
 
-        public override bool IsValidWildcardType(Type type)
+        protected override IEnumerable<PortDefinition> DefinedPorts => new[]
         {
-            return ComputeGraphTypes.IsBuffer(type);
-        }
-
-        protected override void OnDefinePorts(IPortDefinitionContext context)
-        {
-            context.AddInputPort("Buffer")
-                .WithDataType(resolvedType)
-                .WithConnectorUI(PortConnectorUI.Arrowhead)
-                .Build();
+            PortDefinition.Input("Buffer", ui: PortConnectorUI.Arrowhead, isWildcard: true),
+            PortDefinition.Input("Index", type: typeof(int)),
             
-            context.AddInputPort<int>("Index")
-                .Build();
+            PortDefinition.Output("Output", dynamicTypeResolver: t=> ComputeGraphTypes.GetPayloadType(t))
+        };
 
-            context.AddOutputPort("Out")
-                .WithDataType(ComputeGraphTypes.GetPayloadType(resolvedType))
-                .Build();
-        }
-        
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
             string bufferName = EvaluateInput(compiler, "Buffer");
             string index = EvaluateInput(compiler, "Index", "0");
 
-            Type payloadType = ComputeGraphTypes.GetPayloadType(resolvedType);
+            Type payloadType = ComputeGraphTypes.GetPayloadType(ResolvedType);
             var hlslType = ComputeGraphTypes.GetStringFromCSType(payloadType);
 
             compiler.Body.AppendLine($"    {hlslType} {outputVar} = {bufferName}[{index}];");

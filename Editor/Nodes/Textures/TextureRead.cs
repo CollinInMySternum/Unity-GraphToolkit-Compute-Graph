@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Unity.GraphToolkit.Editor;
 using Unity.Mathematics;
 using UnityEngine;
@@ -9,32 +10,24 @@ namespace Editor.Nodes.Textures
     [Node("Textures", "", "Texture Read", StylePath)]
     public class TextureReadNode : ComputeNodeWildcardBase
     {
-        public override string[] wildcardPorts => new[] { "Texture" };
-
         public override bool IsValidWildcardType(Type type)
         {
             return ComputeGraphTypes.IsTexture(type);
         }
-
-        protected override void OnDefinePorts(IPortDefinitionContext context)
+        
+        protected override IEnumerable<PortDefinition> DefinedPorts => new[]
         {
-            context.AddInputPort("Texture")
-                .WithDataType(resolvedType)
-                .WithConnectorUI(PortConnectorUI.Arrowhead)
-                .Build();
+            PortDefinition.Input("Texture", isWildcard: true),
+            PortDefinition.Input("Indices", dynamicTypeResolver: t => 
+                ResolvedType == typeof(Texture2D) ? typeof(int2) :
+                ResolvedType == typeof(Texture3D) ? typeof(int3) :
+                ResolvedType == typeof(ComputeGraphTypes.RWTexture2D) ? typeof(int2) :
+                ResolvedType == typeof(ComputeGraphTypes.RWTexture3D) ? typeof(int3) :
+                typeof(Untyped)
+            ),
             
-            context.AddInputPort("Indices")
-                .WithDataType(
-                    resolvedType == typeof(Texture2D) ? typeof(int2) :
-                    resolvedType == typeof(Texture3D) ? typeof(int3) :
-                    resolvedType == typeof(ComputeGraphTypes.RWTexture2D) ? typeof(int2) :
-                    resolvedType == typeof(ComputeGraphTypes.RWTexture3D) ? typeof(int3) :
-                        typeof(Untyped)
-                )
-                .Build();
-            
-            context.AddOutputPort<float4>("Out (RGBA)").Build();
-        }
+            PortDefinition.Output("Out", typeof(float4))
+        };
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {

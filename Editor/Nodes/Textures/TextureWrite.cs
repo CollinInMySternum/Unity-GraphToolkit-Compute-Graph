@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Unity.GraphToolkit.Editor;
 using Unity.Mathematics;
 using UnityEngine;
@@ -9,30 +10,22 @@ namespace Editor.Nodes.Textures
     [Node("Textures", "", "Texture Write", StylePath)]
     public class TextureWriteNode : ComputeNodeWildcardBase, IComputeNodeOutput
     {
-        public override string[] wildcardPorts => new[] { "RWTexture" };
-
         public override bool IsValidWildcardType(Type type)
         {
             return ComputeGraphTypes.IsTexture(type) && ComputeGraphTypes.IsReadWrite(type);
         }
-
-        protected override void OnDefinePorts(IPortDefinitionContext context)
+        
+        protected override IEnumerable<PortDefinition> DefinedPorts => new[]
         {
-            context.AddInputPort("RWTexture")
-                .WithDataType(resolvedType)
-                .WithConnectorUI(PortConnectorUI.Arrowhead)
-                .Build();
+            PortDefinition.Input("RWTexture", isWildcard: true),
+            PortDefinition.Input("Indices", dynamicTypeResolver: t => 
+                ResolvedType == typeof(ComputeGraphTypes.RWTexture2D) ? typeof(int2) :
+                ResolvedType == typeof(ComputeGraphTypes.RWTexture3D) ? typeof(int3) :
+                typeof(Untyped)
+            ),
             
-            context.AddInputPort("Indices")
-                .WithDataType(
-                        resolvedType == typeof(ComputeGraphTypes.RWTexture2D) ? typeof(int2) :
-                        resolvedType == typeof(ComputeGraphTypes.RWTexture3D) ? typeof(int3) :
-                            typeof(Untyped)
-                    )
-                .Build();
-            
-            context.AddInputPort<float4>("Value").Build();
-        }
+            PortDefinition.Input("Value", type: typeof(float4))
+        };
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {

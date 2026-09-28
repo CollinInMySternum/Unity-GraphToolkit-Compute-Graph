@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Unity.GraphToolkit.Editor;
 using Unity.Mathematics;
 
@@ -8,26 +9,13 @@ namespace Editor.Nodes.Math.Arithmetic
     [Node("Math/Arithmetic", "", "Dot Product", StylePath)]
     public class DotProductNode : ComputeNodeWildcardBase
     {
-        public override string[] wildcardPorts => new[] { "v1", "v2" };
-
-        public override bool IsValidWildcardType(Type type)
+        protected override IEnumerable<PortDefinition> DefinedPorts => new[]
         {
-            // Only support float vectors
-            return (type == typeof(float2)) || (type == typeof(float3)) || (type == typeof(float4));
-        }
+            PortDefinition.Input("v1", isWildcard: true),
+            PortDefinition.Input("v2", isWildcard: true),
 
-        protected override void OnDefinePorts(IPortDefinitionContext context)
-        {
-            context.AddInputPort("v1")
-                .WithDataType(resolvedType)
-                .Build();
-            
-            context.AddInputPort("v2")
-                .WithDataType(resolvedType)
-                .Build();
-
-            context.AddOutputPort<float>("Out");
-        }
+            PortDefinition.Output("Out", type: typeof(float))
+        };
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {

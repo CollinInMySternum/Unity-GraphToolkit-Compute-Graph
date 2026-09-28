@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Unity.GraphToolkit.Editor;
 using Unity.Mathematics;
 
@@ -8,14 +9,13 @@ namespace Editor.Nodes.Inputs
     [Node("Inputs", "", "Group Thread ID", StylePath)]
     public class GroupThreadId : ComputeNodeBase
     {
-        protected override void OnDefinePorts(IPortDefinitionContext context)
+        protected override IEnumerable<PortDefinition> DefinedPorts => new[]
         {
-            context.AddOutputPort<int3>("XYZ").Build();
-            
-            context.AddOutputPort<int>("X").Build();
-            context.AddOutputPort<int>("Y").Build();
-            context.AddOutputPort<int>("Z").Build();
-        }
+            PortDefinition.Output("XYZ", type: typeof(int3)),
+            PortDefinition.Output("X", type: typeof(int)),
+            PortDefinition.Output("Y", type: typeof(int)),
+            PortDefinition.Output("Z", type: typeof(int)),
+        };
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {

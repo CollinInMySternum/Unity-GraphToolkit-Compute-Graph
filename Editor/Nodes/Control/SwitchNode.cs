@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using Unity.GraphToolkit.Editor;
+using UnityEditor.Experimental.GraphView;
 
 namespace Editor.Nodes.Control
 {
@@ -11,29 +12,6 @@ namespace Editor.Nodes.Control
     public class SwitchNode : ComputeNodeWildcardBase
     {
         private const string k_NumCases = "NumCases";
-        
-        public override string[] wildcardPorts
-        {
-            // Define wildcard ports dynamically from NumCases
-            get
-            {
-                var ports = new List<string>{"Out"};
-
-                // Cases
-                if (GetNodeOptionByName(k_NumCases).TryGetValue<int>(out var numCases))
-                {
-                    for (int i = 0; i < numCases; i++)
-                    {
-                        ports.Add($"{i}");
-                    }
-                }
-                
-                // Default case
-                ports.Add("Default");
-
-                return ports.ToArray();
-            }
-        }
 
         protected override void OnDefineOptions(IOptionDefinitionContext context)
         {
@@ -41,25 +19,29 @@ namespace Editor.Nodes.Control
                 .WithDisplayName("Num Cases")
                 .WithDefaultValue(2);
         }
-
-        protected override void OnDefinePorts(IPortDefinitionContext context)
+        
+        protected override IEnumerable<PortDefinition> DefinedPorts
         {
-            GetNodeOptionByName(k_NumCases).TryGetValue<int>(out var numCases);
-            
-            // In/out
-            context.AddInputPort<int>("In").Build();
-            context.AddOutputPort("Out").WithDataType(resolvedType).Build();
-            
-            // Base cases
-            for (int i = 0; i < numCases; i++)
+            get 
             {
-                context.AddInputPort($"{i}").WithDataType(resolvedType).Build();
-            }
-            
-            // Default case
-            context.AddInputPort("Default").WithDataType(resolvedType).Build();
-        }
+                GetNodeOptionByName(k_NumCases).TryGetValue<int>(out var numCases);
 
+                IEnumerable<PortDefinition> portDefinitions = new List<PortDefinition>();
+
+                portDefinitions = portDefinitions.Append(PortDefinition.Input("In", typeof(int)));
+                portDefinitions = portDefinitions.Append(PortDefinition.Output("Out", isWildcard: true));
+                
+                for (int i = 0; i < numCases; i++)
+                {
+                    portDefinitions = portDefinitions.Append(PortDefinition.Input($"{i}", isWildcard: true));
+                }
+                
+                portDefinitions = portDefinitions.Append(PortDefinition.Output("Default", isWildcard: true));
+                
+                return portDefinitions;
+            }
+        }
+        
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
             // Get number of cases
@@ -67,7 +49,7 @@ namespace Editor.Nodes.Control
             
             // Input
             string index = EvaluateInput(compiler, "In");
-            var valueType = ComputeGraphTypes.GetStringFromCSType(resolvedType);
+            var valueType = ComputeGraphTypes.GetStringFromCSType(ResolvedType);
             
             // Evaluate and construct case lines
             string[] caseLines = new string[numCases + 1];

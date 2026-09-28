@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Unity.GraphToolkit.Editor;
 
 namespace Editor.Nodes.Math.Trigonometry
@@ -7,16 +8,15 @@ namespace Editor.Nodes.Math.Trigonometry
     [Node("Math/Trigonometry", "", "Radians to Degrees", StylePath)]
     public class RadiansToDegrees : ComputeNodeBase
     {
-        protected override void OnDefinePorts(IPortDefinitionContext context)
+        protected override IEnumerable<PortDefinition> DefinedPorts => new[]
         {
-            context.AddInputPort<float>("In (Radians)").Build();
-
-            context.AddOutputPort<float>("Out (Degrees)").Build();
-        }
+            PortDefinition.Input("In", type: typeof(float)),
+            PortDefinition.Output("Out", type: typeof(float)),
+        };
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
-            string valX = EvaluateInput(compiler, "In (Radians)");
+            string valX = EvaluateInput(compiler, "In");
 
             compiler.Body.AppendLine($"    float {outputVar} = {valX} * PI / 180.0f;");
         }
@@ -26,16 +26,15 @@ namespace Editor.Nodes.Math.Trigonometry
     [Node("Math/Trigonometry", "", "Degrees to Radians", StylePath)]
     public class DegreesToRadians : ComputeNodeBase
     {
-        protected override void OnDefinePorts(IPortDefinitionContext context)
+        protected override IEnumerable<PortDefinition> DefinedPorts => new[]
         {
-            context.AddInputPort<float>("In (Degrees)").Build();
-
-            context.AddOutputPort<float>("Out (Radians)").Build();
-        }
+            PortDefinition.Input("In", type: typeof(float)),
+            PortDefinition.Output("Out", type: typeof(float)),
+        };
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
-            string valX = EvaluateInput(compiler, "In (Degrees)");
+            string valX = EvaluateInput(compiler, "In");
 
             compiler.Body.AppendLine($"    float {outputVar} = {valX} * 180.0f / PI;");
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Unity.GraphToolkit.Editor;
 using UnityEngine;
 
@@ -8,26 +9,17 @@ namespace Editor.Nodes.Buffers
     [Node("Buffers", "", "Write Buffer", StylePath)]
     public class WriteBuffer : ComputeNodeWildcardBase, IComputeNodeOutput
     {
-        public override string[] wildcardPorts => new[] { "RWBuffer" };
-
         public override bool IsValidWildcardType(Type type)
         {
             return ComputeGraphTypes.IsBuffer(type) && ComputeGraphTypes.IsReadWrite(type);
         }
-
-        protected override void OnDefinePorts(IPortDefinitionContext context)
+        
+        protected override IEnumerable<PortDefinition> DefinedPorts => new[]
         {
-            context.AddInputPort("RWBuffer")
-                .WithDataType(resolvedType)
-                .WithConnectorUI(PortConnectorUI.Arrowhead)
-                .Build();
-            
-            context.AddInputPort<int>("Index").Build();
-            
-            context.AddInputPort("Value")
-                .WithDataType(ComputeGraphTypes.GetPayloadType(resolvedType))
-                .Build();
-        }
+            PortDefinition.Input("RWBuffer", ui: PortConnectorUI.Arrowhead, isWildcard: true),
+            PortDefinition.Input("Index", type: typeof(int)),
+            PortDefinition.Input("Value", dynamicTypeResolver: t=> ComputeGraphTypes.GetPayloadType(t))
+        };
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {

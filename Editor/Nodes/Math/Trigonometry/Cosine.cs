@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Unity.GraphToolkit.Editor;
 
 namespace Editor.Nodes.Math.Trigonometry
@@ -7,11 +8,11 @@ namespace Editor.Nodes.Math.Trigonometry
     [Node("Math/Trigonometry", "", "Cosine (Degrees)", StylePath)]
     public class CosineDegrees : ComputeNodeBase
     {
-        protected override void OnDefinePorts(IPortDefinitionContext context)
+        protected override IEnumerable<PortDefinition> DefinedPorts => new[]
         {
-            context.AddInputPort<float>("In").Build();
-            context.AddOutputPort<float>("Out").Build();
-        }
+            PortDefinition.Input("In", type: typeof(float)),
+            PortDefinition.Output("Out", type: typeof(float)),
+        };
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
@@ -25,11 +26,11 @@ namespace Editor.Nodes.Math.Trigonometry
     [Node("Math/Trigonometry", "", "Cosine (Radians)", StylePath)]
     public class CosineRadians : ComputeNodeBase
     {
-        protected override void OnDefinePorts(IPortDefinitionContext context)
+        protected override IEnumerable<PortDefinition> DefinedPorts => new[]
         {
-            context.AddInputPort<float>("In").Build();
-            context.AddOutputPort<float>("Out").Build();
-        }
+            PortDefinition.Input("In", type: typeof(float)),
+            PortDefinition.Output("Out", type: typeof(float)),
+        };
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
@@ -43,11 +44,11 @@ namespace Editor.Nodes.Math.Trigonometry
     [Node("Math/Trigonometry", "", "Arccosine (Degrees)", StylePath)]
     public class ArcCosineDegrees : ComputeNodeBase
     {
-        protected override void OnDefinePorts(IPortDefinitionContext context)
+        protected override IEnumerable<PortDefinition> DefinedPorts => new[]
         {
-            context.AddInputPort<float>("In").Build();
-            context.AddOutputPort<float>("Out").Build();
-        }
+            PortDefinition.Input("In", type: typeof(float)),
+            PortDefinition.Output("Out", type: typeof(float)),
+        };
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
@@ -61,11 +62,11 @@ namespace Editor.Nodes.Math.Trigonometry
     [Node("Math/Trigonometry", "", "Arccosine (Radians)", StylePath)]
     public class ArcCosineRadians : ComputeNodeBase
     {
-        protected override void OnDefinePorts(IPortDefinitionContext context)
+        protected override IEnumerable<PortDefinition> DefinedPorts => new[]
         {
-            context.AddInputPort<float>("In").Build();
-            context.AddOutputPort<float>("Out").Build();
-        }
+            PortDefinition.Input("In", type: typeof(float)),
+            PortDefinition.Output("Out", type: typeof(float)),
+        };
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {

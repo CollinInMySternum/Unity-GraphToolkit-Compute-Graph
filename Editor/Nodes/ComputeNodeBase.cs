@@ -15,11 +15,46 @@ namespace Editor.Nodes
         
         [NonSerialized] private string _cachedVarName;
 
+        protected virtual IEnumerable<PortDefinition> DefinedPorts => Enumerable.Empty<PortDefinition>();
+        
+        protected virtual Type ResolvePortType(PortDefinition def)
+        {
+            return def.StaticType;
+        }
+
+        protected override void OnDefinePorts(IPortDefinitionContext context)
+        {
+            foreach (var def in DefinedPorts)
+            {
+                Type activeType = ResolvePortType(def);
+                string typeFriendlyName = ComputeGraphTypes.GetStringFromCSType(activeType);
+
+                string formattedDisplayName = $"{def.Name}, ({typeFriendlyName})";
+
+                if (def.Direction == PortDirection.Input)
+                {
+                    context.AddInputPort(def.Name)
+                        .WithDataType(activeType)
+                        .WithConnectorUI(def.ConnectorUI)
+                        .WithDisplayName(formattedDisplayName)
+                        .Build();
+                }
+                else
+                {
+                    context.AddOutputPort(def.Name)
+                        .WithDataType(activeType)
+                        .WithConnectorUI(def.ConnectorUI)
+                        .WithDisplayName(formattedDisplayName)
+                        .Build();
+                }
+            }
+        }
+        
         public void ResetCompilationState()
         {
             _cachedVarName = null;
         }
-
+        
         public string GetOrEmitHLSL(ComputeGraphCompiler compiler, string outputPortName)
         {
             if (string.IsNullOrEmpty(_cachedVarName))

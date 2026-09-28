@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using Unity.GraphToolkit.Editor;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -112,6 +113,25 @@ namespace Editor
             if (t == typeof(int3)) return "int3";
             if (t == typeof(int4)) return "int4";
             if (t == typeof(bool)) return "bool";
+
+            if (t == typeof(Texture3D)) return "Texture3D";
+            if (t == typeof(Texture2D)) return "Texture2D";
+            
+            if (t == typeof(RWTexture3D)) return "RWTexture3D";
+            if (t == typeof(RWTexture2D)) return "RWTexture2D";
+            
+            if (t == typeof(BufferFloat)) return "BufferFloat";
+            if (t == typeof(BufferFloat2)) return "BufferFloat2";
+            if (t == typeof(BufferFloat3)) return "BufferFloat3";
+            if (t == typeof(BufferFloat4)) return "BufferFloat4";
+            
+            if (t == typeof(RWBufferFloat)) return "RWBufferFloat";
+            if (t == typeof(RWBufferFloat2)) return "RWBufferFloat2";
+            if (t == typeof(RWBufferFloat3)) return "RWBufferFloat3";
+            if (t == typeof(RWBufferFloat4)) return "RWBufferFloat4";
+
+            if (t == typeof(Untyped)) return "Wildcard";
+            
             return "float";
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Unity.GraphToolkit.Editor;
 using Unity.Mathematics;
 using UnityEngine;
@@ -9,22 +10,20 @@ namespace Editor.Nodes.Math.Arithmetic
     [Node("Math/Arithmetic", "", "Multiply", StylePath)]
     public class MultiplyNode : ComputeNodeWildcardBase
     {
-        public override string[] wildcardPorts => new[] { "A", "B", "Out" };
-
-        protected override void OnDefinePorts(IPortDefinitionContext context)
+        protected override IEnumerable<PortDefinition> DefinedPorts => new[]
         {
-            context.AddInputPort("A").WithDataType(resolvedType).Build();
-            context.AddInputPort("B").WithDataType(resolvedType).Build();
-            
-            context.AddOutputPort("Out").WithDataType(resolvedType).Build();
-        }
+            PortDefinition.Input("A", isWildcard: true),
+            PortDefinition.Input("B", isWildcard: true),
+
+            PortDefinition.Output("Out", isWildcard: true)
+        };
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
             string valA = EvaluateInput(compiler, "A");
             string valB = EvaluateInput(compiler, "B");
 
-            string hlslType = ComputeGraphTypes.GetStringFromCSType(resolvedType);
+            string hlslType = ComputeGraphTypes.GetStringFromCSType(ResolvedType);
 
             compiler.Body.AppendLine($"    {hlslType} {outputVar} = {valA} * {valB};");
         }

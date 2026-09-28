@@ -86,11 +86,19 @@ namespace Editor
             
             // Submit fake transaction
             UndoBeginRecordGraph("Resolve wildcard types");
+
+            var wildcardNodes = GetNodes().OfType<ComputeNodeWildcardBase>().ToList();
             
             // Resolve types
-            foreach (var node in GetNodes().OfType<ComputeNodeWildcardBase>())
+            foreach (var node in wildcardNodes)
             {
-                node.ResolveType();
+                node.CacheWildcardState();
+            }
+            
+            // Rebuild nodes
+            foreach (var node in wildcardNodes)
+            {
+                node.DefineNode();
             }
             
             // End fake transaction
@@ -99,8 +107,27 @@ namespace Editor
 
         public override bool IsConnectionAllowed(IPort output, IPort input)
         {
-            return !(output.DataType == typeof(Untyped) && input.DataType == typeof(Untyped)) &&
-                   !(output.DataType == typeof(Untyped) && input.DataType != typeof(Untyped));
+            if (output.DataType == typeof(Untyped) && input.DataType == typeof(Untyped)) return false;
+            if (output.DataType == typeof(Untyped) && input.DataType != typeof(Untyped)) return false;
+
+            // Wildcard rules
+            if (input.GetNode() is ComputeNodeWildcardBase wildcardNode)
+            {
+                // Check input port connected is one of the wildcard ports
+                if (wildcardNode.wildcardPorts.Contains(input.Name))
+                {
+                    // Check if the type is accepted
+                    return wildcardNode.IsValidWildcardType(output.DataType);
+                }
+            }
+
+            // Standard strict type matching
+            if (input.DataType != typeof(Untyped) && output.DataType != typeof(Untyped))
+            {
+                return input.DataType == output.DataType;
+            }
+
+            return true;
         }
 
         public void CreateComputeAsset(string source)
