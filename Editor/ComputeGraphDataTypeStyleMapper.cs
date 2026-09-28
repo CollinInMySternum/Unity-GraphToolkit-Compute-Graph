@@ -32,15 +32,15 @@ namespace Editor
             new DataTypeStyleDefinition { Type = typeof(int3), IconPath = "Vector3@4x", Color = Vector2Color },
             new DataTypeStyleDefinition { Type = typeof(int4), IconPath = "Vector4@4x", Color = Vector3Color },
             
-            new DataTypeStyleDefinition { Type = typeof(ComputeGraphTypes.RWBufferFloat), IconPath = "Advanced@4x", Color = SingleColor },
-            new DataTypeStyleDefinition { Type = typeof(ComputeGraphTypes.RWBufferFloat2), IconPath = "Advanced@4x", Color = Vector2Color },
-            new DataTypeStyleDefinition { Type = typeof(ComputeGraphTypes.RWBufferFloat3), IconPath = "Advanced@4x", Color = Vector3Color },
-            new DataTypeStyleDefinition { Type = typeof(ComputeGraphTypes.RWBufferFloat4), IconPath = "Advanced@4x", Color = Vector4Color },
+            new DataTypeStyleDefinition { Type = typeof(ComputeGraphTypes.RWBufferFloat), IconPath = "Array@4x", Color = SingleColor },
+            new DataTypeStyleDefinition { Type = typeof(ComputeGraphTypes.RWBufferFloat2), IconPath = "Array@4x", Color = Vector2Color },
+            new DataTypeStyleDefinition { Type = typeof(ComputeGraphTypes.RWBufferFloat3), IconPath = "Array@4x", Color = Vector3Color },
+            new DataTypeStyleDefinition { Type = typeof(ComputeGraphTypes.RWBufferFloat4), IconPath = "Array@4x", Color = Vector4Color },
                                                                                                                                          
-            new DataTypeStyleDefinition { Type = typeof(ComputeGraphTypes.BufferFloat), IconPath = "Advanced@4x", Color = SingleColor },
-            new DataTypeStyleDefinition { Type = typeof(ComputeGraphTypes.BufferFloat2), IconPath = "Advanced@4x", Color = Vector2Color },
-            new DataTypeStyleDefinition { Type = typeof(ComputeGraphTypes.BufferFloat3), IconPath = "Advanced@4x", Color = Vector3Color },
-            new DataTypeStyleDefinition { Type = typeof(ComputeGraphTypes.BufferFloat4), IconPath = "Advanced@4x", Color = Vector4Color },
+            new DataTypeStyleDefinition { Type = typeof(ComputeGraphTypes.BufferFloat), IconPath = "Array@4x", Color = SingleColor },
+            new DataTypeStyleDefinition { Type = typeof(ComputeGraphTypes.BufferFloat2), IconPath = "Array@4x", Color = Vector2Color },
+            new DataTypeStyleDefinition { Type = typeof(ComputeGraphTypes.BufferFloat3), IconPath = "Array@4x", Color = Vector3Color },
+            new DataTypeStyleDefinition { Type = typeof(ComputeGraphTypes.BufferFloat4), IconPath = "Array@4x", Color = Vector4Color },
             
             new DataTypeStyleDefinition { Type = typeof(ComputeGraphTypes.RWTexture2D), IconPath = "Texture2D@4x", Color = TextureColor },
             new DataTypeStyleDefinition { Type = typeof(ComputeGraphTypes.RWTexture3D), IconPath = "Texture3D@4x", Color = TextureColor },
