@@ -36,7 +36,7 @@ namespace Editor.Nodes.Control
                     portDefinitions = portDefinitions.Append(PortDefinition.Input($"{i}", isWildcard: true));
                 }
                 
-                portDefinitions = portDefinitions.Append(PortDefinition.Output("Default", isWildcard: true));
+                portDefinitions = portDefinitions.Append(PortDefinition.Input("Default", isWildcard: true));
                 
                 return portDefinitions;
             }
