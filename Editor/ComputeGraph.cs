@@ -119,6 +119,13 @@ namespace Editor
                     // Check if the type is accepted
                     return wildcardNode.IsValidWildcardType(output.DataType);
                 }
+                
+                // Inferred port handling
+                // If a port type is inferred or resolved dynamically, and is Untyped, then we should not allow inputs.
+                if (wildcardNode.GetPortDefinition(input.Name, out var portDefinition))
+                {
+                    if (portDefinition.DynamicTypeResolver != null && input.DataType == typeof(Untyped)) return false;
+                }
             }
 
             // Standard strict type matching

@@ -22,6 +22,21 @@ namespace Editor.Nodes
             return def.StaticType;
         }
 
+        public bool GetPortDefinition(string Name, out PortDefinition Port)
+        {
+            foreach (var portDefinition in DefinedPorts)
+            {
+                if (portDefinition.Name == Name)
+                {
+                    Port = portDefinition;
+                    return true;
+                }
+            }
+
+            Port = new PortDefinition();
+            return false;
+        }
+
         protected override void OnDefinePorts(IPortDefinitionContext context)
         {
             foreach (var def in DefinedPorts)
