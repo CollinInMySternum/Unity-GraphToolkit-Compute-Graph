@@ -42,31 +42,48 @@ namespace Editor
 
         public void CompileToHLSL()
         {
-            var compiler = new ComputeGraphCompiler();
+            // Check for duplicate variables
+            var variables = GetNodes().OfType<IVariableNode>().Select(v => v.Variable).Distinct();
+            var safeNames = new HashSet<string>();
+            
+            foreach (var v in variables)
+            {
+                string safeName = ComputeGraphTypes.GetSafeHLSLName(v.Name);
+                if (!safeNames.Add(safeName))
+                {
+                    Debug.LogWarning($"[ComputeGraph] Duplicate HLSL safe name detected: '{safeName}' (from '{v.Name}'). This will cause shader compilation errors.");
+                }
+            }
 
             var outputNodes = GetNodes().OfType<IComputeNodeOutput>().Cast<ComputeNodeBase>().ToList();
 
+            // Check if there are any output nodes
             if (outputNodes.Count == 0)
             {
-                Debug.LogError("Compilation Failed: No Output Nodes found on graph.");
+                Debug.LogError("[ComputeGraph] Compilation Failed: No Output Nodes found on graph.");
                 return;
             }
 
+            // Reset previous compilation state and cache
             foreach (var node in GetNodes().OfType<ComputeNodeBase>())
             {
                 node.ResetCompilationState();
             }
 
+            // Emit HLSL starting from the output nodes
+            var compiler = new ComputeGraphCompiler();
+            
             foreach (var outputNode in outputNodes)
             {
                 outputNode.GetOrEmitHLSL(compiler, "Result");
             }
 
+            // Get final code and create a compute asset
             string finalCode = compiler.GetCompiledShader();
             
             CreateComputeAsset(finalCode);
             
-            Debug.Log($"Compilation Successful\n\n {finalCode}");
+            Debug.Log($"[ComputeGraph] Compilation Successful: \n\n {finalCode}");
         }
 
         public override void OnGraphChanged(GraphLogger graphLogger)
@@ -139,7 +156,7 @@ namespace Editor
 
         public void CreateComputeAsset(string source)
         {
-            string folderPath = "Assets/ComputeGraph/.generated";
+            string folderPath = "Assets/ComputeGraph/generated";
 
             if (!Directory.Exists(folderPath))
             {
