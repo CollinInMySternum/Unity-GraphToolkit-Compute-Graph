@@ -3,12 +3,22 @@ using System.Collections.Generic;
 using Unity.GraphToolkit.Editor;
 using Unity.Mathematics;
 
-namespace Editor.Nodes.Math.Arithmetic
+namespace Editor.Nodes.Math.Vector
 {
     [Serializable]
-    [Node("Math/Arithmetic", "", "Dot Product", StylePath)]
+    [Node("Math/Vector", "", "Dot Product", StylePath)]
     public class DotProductNode : ComputeNodeWildcardBase
     {
+        public override bool IsValidWildcardType(Type type)
+        {
+            return type == typeof(float2) ||
+                   type == typeof(float3) ||
+                   type == typeof(float4) ||
+                   type == typeof(int2) ||
+                   type == typeof(int3) ||
+                   type == typeof(int4);
+        }
+
         protected override IEnumerable<PortDefinition> DefinedPorts => new[]
         {
             PortDefinition.Input("v1", isWildcard: true),

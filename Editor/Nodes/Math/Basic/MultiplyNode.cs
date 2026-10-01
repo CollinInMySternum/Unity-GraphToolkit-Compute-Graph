@@ -4,11 +4,11 @@ using Unity.GraphToolkit.Editor;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace Editor.Nodes.Math.Arithmetic
+namespace Editor.Nodes.Math.Basic
 {
     [Serializable]
-    [Node("Math/Arithmetic", "", "Add", StylePath)]
-    public class AddNode : ComputeNodeWildcardBase
+    [Node("Math/Basic", "", "Multiply", StylePath)]
+    public class MultiplyNode : ComputeNodeWildcardBase
     {
         protected override IEnumerable<PortDefinition> DefinedPorts => new[]
         {
@@ -25,7 +25,7 @@ namespace Editor.Nodes.Math.Arithmetic
 
             string hlslType = ComputeGraphTypes.GetStringFromCSType(ResolvedType);
 
-            compiler.Body.AppendLine($"    {hlslType} {outputVar} = {valA} + {valB};");
+            compiler.Body.AppendLine($"    {hlslType} {outputVar} = {valA} * {valB};");
         }
     }
 }

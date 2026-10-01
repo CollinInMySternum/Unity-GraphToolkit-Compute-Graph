@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using Unity.GraphToolkit.Editor;
 
-namespace Editor.Nodes.Math.Operators
+namespace Editor.Nodes.Math.Boolean
 {
     [Serializable]
-    [Node("Math/Operators", "", "OR", StylePath)]
+    [Node("Math/Boolean", "", "OR", StylePath)]
     public class BooleanOr : ComputeNodeBase
     {
         protected override IEnumerable<PortDefinition> DefinedPorts => new[]
@@ -26,7 +26,7 @@ namespace Editor.Nodes.Math.Operators
     }
     
     [Serializable]
-    [Node("Math/Operators", "", "AND", StylePath)]
+    [Node("Math/Boolean", "", "AND", StylePath)]
     public class BooleanAnd : ComputeNodeBase
     {
         

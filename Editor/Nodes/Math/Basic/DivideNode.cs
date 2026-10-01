@@ -4,10 +4,10 @@ using Unity.GraphToolkit.Editor;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace Editor.Nodes.Math.Arithmetic
+namespace Editor.Nodes.Math.Basic
 {
     [Serializable]
-    [Node("Math/Arithmetic", "", "Divide", StylePath)]
+    [Node("Math/Basic", "", "Divide", StylePath)]
     public class DivideNode : ComputeNodeWildcardBase
     {
         protected override IEnumerable<PortDefinition> DefinedPorts => new[]
